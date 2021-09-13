@@ -10,20 +10,24 @@ const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
     const div = document.createElement("div");
-    div.classList.add("product");
-    div.innerHTML = `<div class="single-product">
-      <div>
-    <img class="product-image" src=${product.image}></img>
-      </div>
-      <h3>${product.title}</h3>
-      <p>Category: ${product.category}</p>
-      <p>
-        <span>Average Rating: ${product.rating.rate}</span> ||
-        <span>Total Rating: ${product.rating.count}</span>
+    div.classList.add("col");
+    div.innerHTML = `
+    <div class="card h-100">
+      <img class="card-img-top" src=${product.image}></img>
+      <div class="card-body">
+      <h5 class="card-title">${product.title}</h5>
+      <p class="card-text fw-bold">Category: ${product.category}</p>
+      <p class="card-text">
+        <span><i class="fas fa-star"></i> ${product.rating.rate}</span> ||
+        <span><i class="fas fa-users"></i> ${product.rating.count}</span>
       </p>
-      <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#product">Details</button></div>
+      <h5 class="card-text fw-bold">Price: $ ${product.price}</h5>
+      </div>
+      <div class="card-footer text-center">
+      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="btn btn-success">Add to cart</button>
+      <button id="details-btn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#product">Details</button>
+      </div>
+      </div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
